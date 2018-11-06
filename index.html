@@ -15,20 +15,21 @@
     <section class="main" ng-controller="TodoController as $ctrl">
         <h1>TODO List</h1>
         <p>A place to store the things you have to do!</p>
-        <input type="text" placeholder="Filter your to-dos">
+        <input type="text" ng-model="$ctrl.filterList" placeholder="Filter your to-dos">
         <ol>
-            <section class="list" ng-class="{ 'completed': chore.completed === true}">
+            <section ng-class="{ 'completed': chore.completed === true}">
 
-                <li ng-repeat="chore in $ctrl.list track by $index">
-                    <button class="completebtn" ng-if="chore.completed">Complete</button>
+                <li ng-repeat="chore in $ctrl.list
+                     | filter: $ctrl.filterList track by $index">
+                    <button ng-click="$ctrl.completeTask(chore);" class="completebtn" ng-if="chore.completed === false">Complete</button>
                     <p>{{ chore.task }}</p>
-                    <p class="x">X</p>
+                    <p ng-click="$ctrl.removeTask(index);" class="x">X</p>
                 </li>
             </section>
         </ol>
 
-        <input type="text" placeholder="Add your to do">
-        <button class="add">Add</button>
+        <input type="text" ng-model="$ctrl.chore" placeholder="Add your to do">
+        <button ng-click="$ctrl.addTask($ctrl.chore);" class="add">Add</button>
 
     </section>
 

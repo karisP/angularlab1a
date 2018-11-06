@@ -30,6 +30,10 @@ input{
     border: 1px solid #bbb;
 }
 
+.completed{
+    text-decoration: line-through;
+}
+
 ol{
     width: 90%;
 }
